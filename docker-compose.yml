@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  emby-dc:
+    image: emby/embyserver:latest
+    environment:
+      - TZ=UTC+4
+      - USERID=1000
+      - GROUPID=100
+      - GIDLIST=100
+
+    restart: unless-stopped
+#    build:
+#      context: ./
+#      dockerfile: Dockerfile
+    volumes:
+      - ./config:/config
+      - /data/Video:/data/Video
+    ports:
+      - 8096:8096
+      - 8920:8920
+#      - '7359/udp:7359/udp'
+#      - '1900/udp:1900/udp'
